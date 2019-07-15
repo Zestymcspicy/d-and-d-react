@@ -3,7 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/core": "^7.5.4",
+    "babel": "^6.23.0",
+    "babel-loader": "8.0.5",
+    "bootstrap": "^4.3.1",
     "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.9",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
   },
@@ -27,5 +32,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "React front-end for TTRPG Social app",
+  "main": "index.js",
+  "author": "Harold Beckerman <halbeckerman@gmail.com>",
+  "license": "MIT"
 }

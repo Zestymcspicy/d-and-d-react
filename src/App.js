@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import TopNav from './TopNav.js';
+import FrontPage from './FrontPage.js';
 
-function App() {
+
+
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state ={
+      user: null,
+      groups: [{img:"/images/axeDouble.png", name:"test", summary: "here are some facts"}],
+      page: "FrontPage"
+    }
+  }
+
+
+
+  render(){
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <TopNav
+    user={this.state.user}
+    />
+    {(()=>{
+      switch (this.state.page) {
+
+      default:
+      return <FrontPage groups={this.state.groups}/>
+    }
+  })()
+  }
     </div>
   );
 }
-
+}
 export default App;
