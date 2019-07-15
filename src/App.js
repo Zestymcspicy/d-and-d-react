@@ -22,7 +22,7 @@ class App extends React.Component {
     <TopNav
     user={this.state.user}
     />
-    {(()=>{
+    {(() => {
       switch (this.state.page) {
 
       default:

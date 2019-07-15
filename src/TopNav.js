@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import twentySided from './images/20sided.svg';
+
 
 function TopNav(props) {
 
@@ -13,7 +13,7 @@ function TopNav(props) {
       <Navbar bg="dark" variant="dark">
       <Navbar.Brand className="mr-auto">
         <img
-          src={twentySided}
+          src="/images/20sided.svg"
           width="30"
           height="30"
           className="d-inline-block align-top"
