@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 
 
 function TopNav(props) {
@@ -22,6 +23,7 @@ function TopNav(props) {
           { ' TTRPG Social'}
       </Navbar.Brand>
       <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+        <NavLink to="/"><NavDropdown.Item as="div">Front Page</NavDropdown.Item></NavLink>
         <NavDropdown.Item className={loggedIn}>Your Characters</NavDropdown.Item>
         <NavDropdown.Item className={loggedIn}>All Characters</NavDropdown.Item>
         <NavDropdown.Item className={loggedIn}>Your Campaigns</NavDropdown.Item>

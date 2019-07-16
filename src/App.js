@@ -1,37 +1,34 @@
-import React from 'react';
+import React, {useState} from 'react';
 import TopNav from './TopNav.js';
 import FrontPage from './FrontPage.js';
+import { BrowserRouter as Switch, Redirect, Route, Link } from 'react-router-dom';
+import GroupPage from './GroupPage.js';
+import { GroupProvider } from './GroupContext.js';
 
 
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state ={
-      user: null,
-      groups: [{img:"/images/axeDouble.png", name:"test", summary: "here are some facts"}],
-      page: "FrontPage"
-    }
-  }
+function App() {
 
-
-
-  render(){
+  const [currentGroup, setCurrentGroup] = useState(null);
+  const [user, setUser] = useState(null);
+  const [page, setPage] = useState("FrontPage");
+  // const groupContext = currentGroup
   return (
     <div className="App">
-    <TopNav
-    user={this.state.user}
-    />
-    {(() => {
-      switch (this.state.page) {
-
-      default:
-      return <FrontPage groups={this.state.groups}/>
-    }
-  })()
-  }
+      <TopNav
+        user={user}
+        />
+      <Switch>
+        <GroupProvider value={{
+            currentGroup: currentGroup,
+            setCurrentGroup: group => setCurrentGroup(group)
+          }}>
+        <Route exact path="/" component={FrontPage}/>
+        <Route path="/GroupPage" component={GroupPage}/>
+        </GroupProvider>
+      </Switch>
     </div>
   );
 }
-}
+
 export default App;
