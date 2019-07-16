@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import SignInModal from './SignInModal';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 
 
@@ -11,7 +12,7 @@ function TopNav(props) {
 
   return(
 
-      <Navbar bg="dark" variant="dark">
+      <Navbar fixed="top" bg="dark" variant="dark">
       <Navbar.Brand className="mr-auto">
         <img
           src="/images/20sided.svg"
@@ -28,7 +29,7 @@ function TopNav(props) {
         <NavDropdown.Item className={loggedIn}>All Characters</NavDropdown.Item>
         <NavDropdown.Item className={loggedIn}>Your Campaigns</NavDropdown.Item>
       </NavDropdown>
-      <Nav.Link variant="dark">SignIn</Nav.Link>
+      <SignInModal/>
       </Navbar>
 
   )

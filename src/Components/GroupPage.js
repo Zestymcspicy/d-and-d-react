@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import GroupContext from './GroupContext.js';
+import GroupContext from '../GroupContext.js';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Image from 'react-bootstrap/Image';
 import Container from 'react-bootstrap/Container';
@@ -8,7 +8,6 @@ import Container from 'react-bootstrap/Container';
 export default function GroupPage() {
 
   const groupContext = useContext(GroupContext)
-  console.log(groupContext)
   return groupContext.currentGroup?
   (
     <Jumbotron>

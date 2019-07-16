@@ -3,8 +3,8 @@ import TopNav from './TopNav.js';
 import FrontPage from './FrontPage.js';
 import { BrowserRouter as Switch, Redirect, Route, Link } from 'react-router-dom';
 import GroupPage from './GroupPage.js';
-import { GroupProvider } from './GroupContext.js';
-
+import { GroupProvider } from '../GroupContext.js';
+import { UserProvider } from '../UserContext.js';
 
 
 function App() {
@@ -12,12 +12,16 @@ function App() {
   const [currentGroup, setCurrentGroup] = useState(null);
   const [user, setUser] = useState(null);
   const [page, setPage] = useState("FrontPage");
-  // const groupContext = currentGroup
+
   return (
     <div className="App">
+    <UserProvider value={{
+      user: user,
+      setUser: user => setUser(user)
+    }}>
       <TopNav
         user={user}
-        />
+      />
       <Switch>
         <GroupProvider value={{
             currentGroup: currentGroup,
@@ -27,6 +31,7 @@ function App() {
         <Route path="/GroupPage" component={GroupPage}/>
         </GroupProvider>
       </Switch>
+      </UserProvider>
     </div>
   );
 }

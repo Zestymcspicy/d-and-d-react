@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import GroupContext from './GroupContext.js';
+import GroupContext from '../GroupContext.js';
 
 function GroupCard(props) {
 
