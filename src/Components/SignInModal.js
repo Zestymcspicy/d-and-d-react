@@ -13,6 +13,8 @@ export default function SignInModal() {
   const [newUser, setNewUser] = useState(false);
   const [displayName, setDisplayName] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordMatch, setPasswordMatch] = useState('');
+  const [email, setEmail] = useState('');
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -23,12 +25,28 @@ export default function SignInModal() {
 
   const handleChangePassword = event => setPassword(event.target.value);
 
+  const handlePasswordMatchChange = event => setPasswordMatch(event.target.value);
+
+  const handleEmailChange = event => setEmail(event.target.value);
+
   const handleSubmit = async() => {
-    const user = await apiHelper.userSignIn(displayName, password)
-    console.log(user)
-    userContext.setUser(user)
-    console.log(userContext.user)
-    setShow(false);
+    if(!newUser) {
+      try{
+      const user = await apiHelper.userSignIn(displayName, password)
+      userContext.setUser(user)
+      setShow(false);
+    } catch(err) {
+      console.log(err)
+    }
+  } else {
+    try{
+      const user = await apiHelper.addUser(displayName, password, passwordMatch, email)
+      userContext.setUser(user)
+      setShow(false)
+    } catch(err) {
+      console.log(err)
+    }
+  }
   }
 
   // const signOut = userContext.setUser(null)
@@ -81,11 +99,19 @@ export default function SignInModal() {
           <div>
           <Form.Group controlId="formPasswordMatch">
             <Form.Label>Password Match</Form.Label>
-            <Form.Control type="password" placeholder="Password Match" />
+            <Form.Control
+            onChange={e => handlePasswordMatchChange(e)}
+            value={passwordMatch}
+            type="password"
+            placeholder="Password Match" />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Control
+            onChange={e => handleEmailChange(e)}
+            value={email}
+            type="email"
+            placeholder="Enter email" />
           </Form.Group>
           </div>:
           null

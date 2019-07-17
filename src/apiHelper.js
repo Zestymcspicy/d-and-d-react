@@ -42,4 +42,46 @@ exports.getAllCharacters = () => {
         // }
       });
   }
-// }
+
+exports.addUser = (displayName, password, passwordMatch, email, err) => {
+    return fetch(`${url}/users/create/`, {
+        method: "POST",
+        body: `displayName=${displayName}&password=${
+        password
+      }&email=${email}&passwordMatch=${passwordMatch}`,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.message === "success") {
+          return data.user;
+          // $("#sign-in-modal").modal("toggle");
+          //basic setup on login
+          // setForUser();
+          // return false;
+        } else {
+          if (!data.displayName) {
+            data.displayName = "";
+          }
+          if (!data.email) {
+            data.email = "";
+          }
+          if (!data.password) {
+            data.password = "";
+          }
+          if (!data.passwordMatch) {
+            data.passwordMatch = "";
+          }
+          const errorMessage = `${data.displayName}
+          ${data.email}
+          ${data.password}
+          ${data.passwordMatch}`;
+          return errorMessage;
+          // $("#signInAlert").text(errorMessage);
+          // $("#signInAlert").removeAttr("hidden");
+        }
+      })
+      .catch(err => console.log(err));
+  }

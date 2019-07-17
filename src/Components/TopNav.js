@@ -25,7 +25,7 @@ function TopNav(props) {
       </Navbar.Brand>
       <NavDropdown title="Dropdown" id="basic-nav-dropdown">
         <NavLink to="/"><NavDropdown.Item as="div">Front Page</NavDropdown.Item></NavLink>
-        <NavDropdown.Item className={loggedIn}>Your Characters</NavDropdown.Item>
+        <NavLink to="/UserPage"><NavDropdown.Item as="div" className={loggedIn}>Your Page</NavDropdown.Item></NavLink>
         <NavDropdown.Item className={loggedIn}>All Characters</NavDropdown.Item>
         <NavDropdown.Item className={loggedIn}>Your Campaigns</NavDropdown.Item>
       </NavDropdown>
