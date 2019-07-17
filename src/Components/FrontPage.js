@@ -9,14 +9,19 @@ export default function FrontPage() {
   const [groups, setGroups] = useState([{img:"/images/axeDouble.png", name:"test", summary: "here are some facts"}])
 
   useEffect(() => {
-    (function getGroups() {
-      fetch('http://localhost:5000/groups/get_all')
+    const abortController = new AbortController();
+    const signal = abortController.signal
+
+    // (function getGroups() {
+      fetch('http://localhost:5000/groups/get_all', {signal: signal})
       .then(res => res.json())
       .then(data => setGroups(data.body))
       .catch(err => console.log(err))
-    })()
-    // return () => console.log("fetched goups");
-  })
+
+    return function cleanup() {
+      abortController.abort()
+    }
+  }, [])
 
 
   return(

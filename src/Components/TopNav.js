@@ -1,4 +1,5 @@
 import React from 'react';
+import { LinkContainer } from 'react-router-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -24,8 +25,8 @@ function TopNav(props) {
           { ' TTRPG Social'}
       </Navbar.Brand>
       <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-        <NavLink to="/"><NavDropdown.Item as="div">Front Page</NavDropdown.Item></NavLink>
-        <NavLink to="/UserPage"><NavDropdown.Item as="div" className={loggedIn}>Your Page</NavDropdown.Item></NavLink>
+        <LinkContainer to="/"><NavDropdown.Item>Front Page</NavDropdown.Item></LinkContainer>
+        <NavDropdown.Item href="/UserPage" className={loggedIn}>Your Page</NavDropdown.Item>
         <NavDropdown.Item className={loggedIn}>All Characters</NavDropdown.Item>
         <NavDropdown.Item className={loggedIn}>Your Campaigns</NavDropdown.Item>
       </NavDropdown>
