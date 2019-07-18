@@ -16,7 +16,7 @@ function GroupCard(props) {
         <Card.Text>
           {props.group.summary}
         </Card.Text>
-        <Link to="/GroupPage">
+        <Link to="/GroupPage/">
         <Button onClick={()=> groupContext.setCurrentGroup(props.group)}variant="primary">Enter {props.group.name}</Button>
         </Link>
       </Card.Body>

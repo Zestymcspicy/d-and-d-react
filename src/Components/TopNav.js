@@ -4,16 +4,16 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import SignInModal from './SignInModal';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
-function TopNav(props) {
+export default function TopNav(props) {
 
   const loggedIn = props.user?"":"disabled"
 
   return(
 
-      <Navbar fixed="top" bg="dark" variant="dark">
+      <Navbar className="mb-3" bg="dark" variant="dark">
       <Navbar.Brand className="mr-auto">
         <img
           src="/images/20sided.svg"
@@ -25,8 +25,8 @@ function TopNav(props) {
           { ' TTRPG Social'}
       </Navbar.Brand>
       <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-        <LinkContainer to="/"><NavDropdown.Item>Front Page</NavDropdown.Item></LinkContainer>
-        <NavDropdown.Item href="/UserPage" className={loggedIn}>Your Page</NavDropdown.Item>
+          <NavDropdown.Item href="/">Front Page</NavDropdown.Item>
+          <NavDropdown.Item href="/UserPage/" className={loggedIn}>Your Page</NavDropdown.Item>
         <NavDropdown.Item className={loggedIn}>All Characters</NavDropdown.Item>
         <NavDropdown.Item className={loggedIn}>Your Campaigns</NavDropdown.Item>
       </NavDropdown>
@@ -35,5 +35,3 @@ function TopNav(props) {
 
   )
 }
-
-export default TopNav

@@ -41,8 +41,12 @@ export default function SignInModal() {
   } else {
     try{
       const user = await apiHelper.addUser(displayName, password, passwordMatch, email)
-      userContext.setUser(user)
-      setShow(false)
+      if(typeof(user)==="object") {
+        userContext.setUser(user)
+        setShow(false)
+      } else {
+        console.log(user)
+      }
     } catch(err) {
       console.log(err)
     }

@@ -16,6 +16,10 @@ function App() {
 
   return (
     <div className="App">
+      <GroupProvider value={{
+          currentGroup: currentGroup,
+          setCurrentGroup: group => setCurrentGroup(group)
+        }}>
     <UserProvider value={{
       user: user,
       setUser: user => setUser(user)
@@ -24,16 +28,12 @@ function App() {
         user={user}
       />
       <Switch>
-        <GroupProvider value={{
-            currentGroup: currentGroup,
-            setCurrentGroup: group => setCurrentGroup(group)
-          }}>
         <Route exact path="/" component={FrontPage}/>
-        <Route path="/GroupPage" component={GroupPage}/>
-        <Route path="/YourPage" component={UserPage}/>
-        </GroupProvider>
+        <Route path="/GroupPage/" component={GroupPage}/>
+        <Route path="/UserPage/" component={UserPage}/>
       </Switch>
       </UserProvider>
+    </GroupProvider>
     </div>
   );
 }
