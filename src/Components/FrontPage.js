@@ -4,9 +4,11 @@ import GroupCard from './GroupCard.js';
 
 
 
+
 export default function FrontPage() {
 
   const [groups, setGroups] = useState([{img:"/images/axeDouble.png", name:"test", summary: "here are some facts"}])
+
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -17,6 +19,7 @@ export default function FrontPage() {
       .then(res => res.json())
       .then(data => setGroups(data.body))
       .catch(err => console.log(err))
+
 
     return function cleanup() {
       abortController.abort()

@@ -27,7 +27,7 @@ export default function TopNav(props) {
       <NavDropdown title="Dropdown" id="basic-nav-dropdown">
           <NavDropdown.Item href="/">Front Page</NavDropdown.Item>
           <NavDropdown.Item href="/UserPage/" className={loggedIn}>Your Page</NavDropdown.Item>
-        <NavDropdown.Item className={loggedIn}>All Characters</NavDropdown.Item>
+        <NavDropdown.Item href="/allCharacters" className={loggedIn}>All Characters</NavDropdown.Item>
         <NavDropdown.Item className={loggedIn}>Your Campaigns</NavDropdown.Item>
       </NavDropdown>
       <SignInModal/>
