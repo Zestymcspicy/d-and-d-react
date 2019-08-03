@@ -16,12 +16,15 @@ function App() {
   const [user, setUser] = useState(null);
   const [page, setPage] = useState("FrontPage");
   const [allCharacters, setAllCharacters] = useState([]);
+  const [currentCharacter, setCurrentCharacter] = useState({});
 
   return (
     <div className="App">
     <CharacterProvider value={{
       allCharacters: allCharacters,
-      setAllCharacters: allCharacters => setAllCharacters(allCharacters)
+      setAllCharacters: allCharacters => setAllCharacters(allCharacters),
+      currentCharacter: currentCharacter,
+      setCurrentCharacter: character => setCurrentCharacter(character)
     }}>
       <GroupProvider value={{
           currentGroup: currentGroup,

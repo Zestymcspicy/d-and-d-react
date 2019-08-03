@@ -1,8 +1,13 @@
 import React, { useContext, useEffect } from 'react';
 import CharacterContext from '../CharacterContext.js';
+import GroupOrCharCard from './GroupOrCharCard.js';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import ApiHelper from '../apiHelper.js';
 
 export default function() {
+
+
   const characterContext = useContext(CharacterContext)
   useEffect(() => {
     const abortController = new AbortController();
@@ -21,7 +26,14 @@ export default function() {
   }, [characterContext])
   return(
     characterContext.allCharacters!==undefined?
-    <div>{characterContext.allCharacters.map( x => <p>{x.name}</p>)}</div>:
+    <Container>
+      <Row>
+      {characterContext.allCharacters.map((x, index )=>
+        <GroupOrCharCard type="/CharPage/"setTo={()=>console.log(x)} key={index} groupOrChar={x}/>
+      )
+    }
+      </Row>
+    </Container>:
     <p>UhOh....</p>
   )
 }

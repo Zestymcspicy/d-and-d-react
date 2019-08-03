@@ -1,12 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
-import GroupCard from './GroupCard.js';
+import GroupOrCharCard from './GroupOrCharCard.js';
+import GroupContext from '../GroupContext.js';
 
 
 
 
 export default function FrontPage() {
 
+  const groupContext = useContext(GroupContext)
   const [groups, setGroups] = useState([{img:"/images/axeDouble.png", name:"test", summary: "here are some facts"}])
 
 
@@ -36,7 +38,7 @@ export default function FrontPage() {
       <p>It's a place to share info about your campaigns in a fun way</p>
       <p>It's a place to poke around and see what others are doing in their gaming lives</p>
     </Jumbotron>
-  {groups.map((x,index) => <GroupCard key={index} group={x}/>) }
+  {groups.map((x,index) => <GroupOrCharCard type="/GroupPage/" setTo={groupContext.setCurrentGroup(x)} key={index} groupOrChar={x}/>) }
   </div>
 )
 
