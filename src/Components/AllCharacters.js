@@ -16,20 +16,23 @@ export default function() {
 
     fetch('http://localhost:5000/characters/get', {signal: signal})
     .then(res => res.json())
-    .then(data => characterContext.setAllCharacters(data.body))
+    .then(data => {
+      console.log(data.body)
+      characterContext.setAllCharacters(data.body)
+    })
     .catch(err => console.log(err))
 
 
     return function cleanup() {
       abortController.abort()
     }
-  }, [characterContext])
+  },[])
   return(
     characterContext.allCharacters!==undefined?
     <Container>
       <Row>
       {characterContext.allCharacters.map((x, index )=>
-        <GroupOrCharCard type="/CharPage/"setTo={()=>console.log(x)} key={index} groupOrChar={x}/>
+        <GroupOrCharCard type="/CharacterPage/" setTo={() => characterContext.setCurrentCharacter(x)} key={index} groupOrChar={x}/>
       )
     }
       </Row>

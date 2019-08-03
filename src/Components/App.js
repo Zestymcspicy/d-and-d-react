@@ -3,6 +3,7 @@ import TopNav from './TopNav.js';
 import FrontPage from './FrontPage.js';
 import GroupPage from './GroupPage.js';
 import UserPage from './UserPage.js';
+import CharacterPage from './CharacterPage.js';
 import AllCharacters from './AllCharacters.js';
 import { BrowserRouter as Switch, Redirect, Route, Link } from 'react-router-dom';
 import { GroupProvider } from '../GroupContext.js';
@@ -14,9 +15,9 @@ function App() {
 
   const [currentGroup, setCurrentGroup] = useState(null);
   const [user, setUser] = useState(null);
-  const [page, setPage] = useState("FrontPage");
+  // const [page, setPage] = useState("FrontPage");
   const [allCharacters, setAllCharacters] = useState([]);
-  const [currentCharacter, setCurrentCharacter] = useState({});
+  const [currentCharacter, setCurrentCharacter] = useState(null);
 
   return (
     <div className="App">
@@ -39,6 +40,7 @@ function App() {
       />
       <Switch>
         <Route exact path="/" component={FrontPage}/>
+        <Route path="/CharacterPage/" component={CharacterPage}/>
         <Route path="/GroupPage/" component={GroupPage}/>
         <Route path="/UserPage/" component={UserPage}/>
         <Route path="/AllCharacters/" component={AllCharacters}/>

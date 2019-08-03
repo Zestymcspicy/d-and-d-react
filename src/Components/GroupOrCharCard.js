@@ -23,7 +23,7 @@ function GroupOrCharCard(props) {
           {props.groupOrChar.summary}
         </Card.Text>
         <Link to={props.type}>
-        <Button onClick={()=> props.setTo} variant="primary">{props.groupOrChar.name}</Button>
+        <Button onClick={()=>props.setTo()} variant="primary">{props.groupOrChar.name}</Button>
         </Link>
       </Card.Body>
     </Card>
