@@ -4,6 +4,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
 import Carousel from 'react-bootstrap/Carousel';
 import Image from 'react-bootstrap/Image';
+import './carouselStyle.css';
 
 export default function() {
   const characterContext = useContext(CharacterContext)
@@ -12,10 +13,11 @@ export default function() {
     return(
     <Carousel.Item key={index}>
       <img
-      style={{maxHeight:"450px", width:"auto"}}
+      style={{maxHeight:"450px",
+      width:"auto"}}
       src={x.img}
       alt={x.captionBody}
-      className="d-block w-100 mx-auto"/>
+      />
       <Carousel.Caption>
         <h3>{x.headline}</h3>
         <p>{x.captionBody}</p>
@@ -23,7 +25,7 @@ export default function() {
     </Carousel.Item>
   )}
   let imageSource = ""
-  if(character!=={}){
+  if(character!==null){
     imageSource = character.icon.includes('http')?character.icon:`/${character.icon}`;
   }
   const styles = {
@@ -37,6 +39,7 @@ export default function() {
   return character?
     (
       <Jumbotron>
+        <Container>
       {character.carousel?
         <Carousel>
           {character.carousel.map((x,index) => slide(x, index))}
@@ -44,12 +47,14 @@ export default function() {
           :
           <p>No Carousel Yet</p>
         }
+      </Container>
         <Container>
           <Image
           style={styles.icon}
           alt="character image"
           src={imageSource}/>
           <p>{character.name}</p>
+          <p>{character.summary}</p>
         </Container>
       </Jumbotron>
     ):

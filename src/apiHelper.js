@@ -1,16 +1,28 @@
+// import CharacterContext from './CharacterContext.js';
 const url = "http://localhost:5000";
 
 
-exports.getAllCharacters = (signal) => {
-    return fetch(`${url}/characters/get`)
-      .then(res => res.json())
-      .then(data => {
-        // allCharacters = data.body
-        // allCharacters.forEach(x => userIconObj[x.name] = x.icon)
-        return data
-      })
-      .catch(err => console.log(err));
-  }
+
+exports.getAllCharacters = (signal, setFunction) => {
+  // const abortController = new AbortController();
+  // const signal = abortController.signal;
+
+
+  fetch('http://localhost:5000/characters/get', {signal: signal})
+  .then(res => res.json())
+  .then(data => {
+    console.log(data.body)
+    return(data.body);
+  })
+  .catch(err => console.log(err))
+
+
+  // return function cleanup() {
+  //   abortController.abort()
+  // }
+}
+
+
 
   exports.userSignIn = (displayName, password) => {
     return fetch(`${url}/users/login/`, {

@@ -1,32 +1,19 @@
 import React, {useState, useEffect, useContext} from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import GroupOrCharCard from './GroupOrCharCard.js';
+import CharacterContext from '../CharacterContext.js';
 import GroupContext from '../GroupContext.js';
+// import apiHelper from '../apiHelper.js';
 
 
 
 
 export default function FrontPage() {
-
-  const groupContext = useContext(GroupContext)
-  const [groups, setGroups] = useState([{img:"/images/axeDouble.png", name:"test", summary: "here are some facts"}])
-
-
-  useEffect(() => {
-    const abortController = new AbortController();
-    const signal = abortController.signal
-
-    // (function getGroups() {
-      fetch('http://localhost:5000/groups/get_all', {signal: signal})
-      .then(res => res.json())
-      .then(data => setGroups(data.body))
-      .catch(err => console.log(err))
+  // const characterContext = useContext(CharacterContext);
+  const groupContext = useContext(GroupContext);
+  // const [groups, setGroups] = useState([{img:"/images/axeDouble.png", name:"test", summary: "here are some facts"}])
 
 
-    return function cleanup() {
-      abortController.abort()
-    }
-  }, [])
 
 
   return(
@@ -38,7 +25,7 @@ export default function FrontPage() {
       <p>It's a place to share info about your campaigns in a fun way</p>
       <p>It's a place to poke around and see what others are doing in their gaming lives</p>
     </Jumbotron>
-  {groups.map((x,index) => <GroupOrCharCard type="/GroupPage/" setTo={groupContext.setCurrentGroup(x)} key={index} groupOrChar={x}/>) }
+  {groupContext.groups.map((x,index) => <GroupOrCharCard type="/GroupPage/" setTo={() => groupContext.setCurrentGroup(x)} key={index} groupOrChar={x}/>) }
   </div>
 )
 

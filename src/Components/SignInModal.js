@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav';
 import UserContext from '../UserContext.js'
-import apiHelper from '../apiHelper.js'
+import {userSignIn, addUser} from '../apiHelper.js'
 
 export default function SignInModal() {
   const userContext = useContext(UserContext)
@@ -32,7 +32,7 @@ export default function SignInModal() {
   const handleSubmit = async() => {
     if(!newUser) {
       try{
-      const user = await apiHelper.userSignIn(displayName, password)
+      const user = await userSignIn(displayName, password)
       userContext.setUser(user)
       setShow(false);
     } catch(err) {
@@ -40,7 +40,7 @@ export default function SignInModal() {
     }
   } else {
     try{
-      const user = await apiHelper.addUser(displayName, password, passwordMatch, email)
+      const user = await addUser(displayName, password, passwordMatch, email)
       if(typeof(user)==="object") {
         userContext.setUser(user)
         setShow(false)

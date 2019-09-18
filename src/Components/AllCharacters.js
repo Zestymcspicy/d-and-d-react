@@ -9,24 +9,7 @@ export default function() {
 
 
   const characterContext = useContext(CharacterContext)
-  useEffect(() => {
-    const abortController = new AbortController();
-    const signal = abortController.signal;
-
-
-    fetch('http://localhost:5000/characters/get', {signal: signal})
-    .then(res => res.json())
-    .then(data => {
-      console.log(data.body)
-      characterContext.setAllCharacters(data.body)
-    })
-    .catch(err => console.log(err))
-
-
-    return function cleanup() {
-      abortController.abort()
-    }
-  },[])
+  
   return(
     characterContext.allCharacters!==undefined?
     <Container>

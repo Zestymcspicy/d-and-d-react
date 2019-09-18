@@ -13,7 +13,10 @@ function GroupOrCharCard(props) {
       marginRight: "auto"
     }
   }
-  const imageSource = props.groupOrChar.img || props.groupOrChar.icon;
+  let imageSource = props.groupOrChar.img || props.groupOrChar.icon;
+  if(imageSource.indexOf('images/')!==-1){
+    imageSource = '../'.concat(imageSource);
+  }
   return(
     <Card style={{width: '18rem'}} className="mx-auto mb-2">
       <Card.Img style={styles.cardImage} variant="top" src={imageSource}/>

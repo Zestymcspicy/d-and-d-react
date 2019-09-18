@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import TopNav from './TopNav.js';
 import FrontPage from './FrontPage.js';
 import GroupPage from './GroupPage.js';
@@ -15,6 +15,8 @@ function App() {
 
   const [currentGroup, setCurrentGroup] = useState(null);
   const [user, setUser] = useState(null);
+  // const [groups, setGroups] = useState([{img:"/images/axeDouble.png", name:"test", summary: "here are some facts"}])
+  const [groups, setGroups] = useState([]);
   // const [page, setPage] = useState("FrontPage");
   const [allCharacters, setAllCharacters] = useState([]);
   const [currentCharacter, setCurrentCharacter] = useState(null);
@@ -29,22 +31,20 @@ function App() {
     }}>
       <GroupProvider value={{
           currentGroup: currentGroup,
-          setCurrentGroup: group => setCurrentGroup(group)
+          groups: groups,
+          setCurrentGroup: group => setCurrentGroup(group),
+          setGroups: groups => setGroups(groups)
         }}>
     <UserProvider value={{
       user: user,
       setUser: user => setUser(user)
     }}>
-      <TopNav
-        user={user}
-      />
-      <Switch>
+      <TopNav/>
         <Route exact path="/" component={FrontPage}/>
         <Route path="/CharacterPage/" component={CharacterPage}/>
-        <Route path="/GroupPage/" component={GroupPage}/>
-        <Route path="/UserPage/" component={UserPage}/>
-        <Route path="/AllCharacters/" component={AllCharacters}/>
-      </Switch>
+        <Route path="/GroupPage" component={GroupPage}/>
+        <Route path="/UserPage" component={UserPage}/>
+        <Route path="/AllCharacters" component={AllCharacters}/>
       </UserProvider>
     </GroupProvider>
     </CharacterProvider>

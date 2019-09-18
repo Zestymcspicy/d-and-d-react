@@ -14,11 +14,11 @@ export default function UserProfile() {
 
   return(
     <div>
-    {user==null?
+    {userContext.user==null?
       <h1 className="ml-2">You are not logged in</h1>
       :
     <div>
-    <h1 className="mx-auto">{user.displayName}</h1>
+    <h1 className="ml-2">{userContext.user.displayName}</h1>
       <Image src={userImage}/>
     </div>
   }
